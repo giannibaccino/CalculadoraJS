@@ -2,11 +2,14 @@ var calc = document.getElementById("calculadora");
 
 calc.style.width = "200px";
 calc.style.height = "220px";
-calc.style.background = "pink";
+calc.style.background = "#5D6D7E";
+calc.style.borderWidth = "thick";
+calc.style.borderStyle = "outset";
 calc.style.margin = "auto";
 calc.style.display = "flex";
 calc.style.alignItems = "center";
 calc.style.justifyContent  = "center";
+calc.style.color = "white";
 
 calc.innerHTML = `<div id="comandos">
         <p id="display"><> </p>
@@ -14,7 +17,7 @@ calc.innerHTML = `<div id="comandos">
             <button id="siete">7</button>
             <button id="ocho">8</button>
             <button id="nueve">9</button>
-            <button id="suma">+</button>
+            <button id="cuadrado">x^2</button>
             <button id="clear">C</button>
         </p>
         <p>
@@ -27,7 +30,7 @@ calc.innerHTML = `<div id="comandos">
             <button id="uno">1</button>
             <button id="dos">2</button>
             <button id="tres">3</button>
-            <button id="cuadrado">x^2</button>
+            <button id="suma">+</button>
         </p>
         <p>
             <button id="cero">0</button>
@@ -36,7 +39,7 @@ calc.innerHTML = `<div id="comandos">
             <button id="igual">=</button>
         </p>
     </div>`;
-
+var comandos = document.getElementById("comandos");
 var display = document.getElementById("display");
 var cero = document.getElementById("cero");
 var uno = document.getElementById("uno");
@@ -56,6 +59,15 @@ var cuadrado = document.getElementById("cuadrado");
 var clear = document.getElementById("clear");
 var igual = document.getElementById("igual");
 
+display.style.background = "grey";
+display.style.borderWidth = "thin";
+display.style.borderStyle = "inset";
+resta.style.width = "36px";
+igual.style.width = "67px";
+suma.style.width = "36px";
+division.style.width = "24px";
+cuadrado.style.width = "36px";
+clear.style.marginLeft = "5px"; 
 
 var accion = "";
 var x = "";
