@@ -106,8 +106,11 @@ suma.addEventListener("click", function(){
 });
 resta.addEventListener("click", function(){
     accion = "resta";
-    num1 = parseInt(x) - num1;
-    x = "0";
+    if(num1 == 0)
+        num1 = parseInt(x);
+    else
+        num1 -= parseInt(x);
+    x = "";
     display.textContent = "<>";
 });
 division.addEventListener("click", function(){
