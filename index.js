@@ -4,9 +4,12 @@ calc.style.width = "200px";
 calc.style.height = "220px";
 calc.style.background = "pink";
 calc.style.margin = "auto";
+calc.style.display = "flex";
+calc.style.alignItems = "center";
+calc.style.justifyContent  = "center";
 
-calc.innerHTML = `<div>
-        <p id="display"><></p>
+calc.innerHTML = `<div id="comandos">
+        <p id="display"><> </p>
         <p>
             <button id="siete">7</button>
             <button id="ocho">8</button>
@@ -53,124 +56,157 @@ var cuadrado = document.getElementById("cuadrado");
 var clear = document.getElementById("clear");
 var igual = document.getElementById("igual");
 
+
 var accion = "";
-var x = "0";
+var x = "";
 var num1 = 0;
-var num2 = 0;
+var num2 = 1;
+var total = 0;
 
 cero.addEventListener("click", function(){
     display.textContent += "0";
-    x.textContent += "0";
+    x += "0";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 uno.addEventListener("click", function(){
     display.textContent += "1";
     x += "1";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 dos.addEventListener("click", function(){
     display.textContent += "2";
     x += "2";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 tres.addEventListener("click", function(){
     display.textContent += "3";
     x += "3";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 cuatro.addEventListener("click", function(){
     display.textContent += "4";
     x += "4";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 cinco.addEventListener("click", function(){
     display.textContent += "5";
     x += "5";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 seis.addEventListener("click", function(){
     display.textContent += "6";
     x += "6";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 siete.addEventListener("click", function(){
     display.textContent += "7";
     x += "7";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 ocho.addEventListener("click", function(){
     display.textContent += "8";
     x += "8";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 nueve.addEventListener("click", function(){
     display.textContent += "9";
     x += "9";
+    num1 = parseInt(x);
+    num2 = parseInt(x);
 });
 suma.addEventListener("click", function(){
     accion = "suma";
-    num1 += parseInt(x);
-    x = "0";
-    display.textContent = "<>";
+    x = "";
+    display.textContent = display.textContent.concat(" + ");       
+    if(total == 0)
+        total = num1;
+    else
+        total += num1;
+    num1 = 0; 
 });
 resta.addEventListener("click", function(){
     accion = "resta";
-    if(num1 == 0)
-        num1 = parseInt(x);
-    else
-        num1 -= parseInt(x);
     x = "";
-    display.textContent = "<>";
+    display.textContent = display.textContent.concat(" - ");
+    if(total == 0)
+        total = num1;
+    else
+        total -= num1;
+    num1 = 0;
 });
 division.addEventListener("click", function(){
     accion = "division";
-    if(num1 != 0)
-        num1 = num1 / parseInt(x);
+    x = "";
+    display.textContent = display.textContent.concat(" / ");
+    if(total == 0)
+        total = num2;
     else
-        num1 = parseInt(x);
-    x = "0";
-    display.textContent = "<>";
+        total = total / num2;
+    num2 = 1;
 });
 
-multiplicacion.addEventListener("click", function(){
-    accion = "multiplicacion";
-    if(num1 != 0)
-        num1 = num1 * parseInt(x);
+multiplicacion.addEventListener("click", function(){        
+    accion = "multiplicacion",
+    x = "";
+    display.textContent = display.textContent.concat(" * ");
+    if(total == 0)
+        total = num2;
     else
-        num1 = parseInt(x);
-    x = "0";
-    display.textContent = "<>";
+        total = total * num2;
+    num2 = 1;
 });
 
 cuadrado.addEventListener("click", function(){
-    accion = "cuadrado";
-    if(num1 == 0)
-        num1 = parseInt(x) * parseInt(x);
+    x = "";
+    display.textContent = display.textContent.concat("^2 ");
+    if(total == 0)
+        total = num1 * num1;
     else
-        num1 = num1*num1;
-    x = "0";
-    display.textContent = "<>";
+        total = total * total;
 });
 
 clear.addEventListener("click", function(){
     num1 = 0;
-    num2 = 0;
-    x = "0";
+    num2 = 1;
+    total = 0;
+    x = "";
     display.textContent = "<>";
 });
 
 igual.addEventListener("click", function(){
     switch(accion){
         case "suma":
-            num2 = num1 + parseInt(x);
-            display.textContent = "<>" + String(num2);
+            total += num1;
+            display.textContent = "<> " + String(total);
             break;
         case "resta":
-            num2 = num1 - parseInt(x);
-            display.textContent = "<>" + String(num2);
+            total -= num1;
+            display.textContent = "<> " + String(total);
             break;
         case "division":
-            num2 = num1 / parseInt(x);
-            display.textContent = "<>" + String(num2);
+            total = total / num2;
+            display.textContent = "<> " + String(total);
             break;
         case "multiplicacion":
-            num2 = num1 * parseInt(x);
-            display.textContent = "<>" + String(num2);
-            break;
+            total = total * num2;
+            display.textContent = "<> " + String(total);
+            break;    
         case "cuadrado":
-            num2 = num1;
-            display.textContent = "<>" + String(num2);
+            total = total * total;
+            display.textContent = "<> " + String(total);
             break;
+        default:
+            display.textContent = "<> " + String(total);
     }
+    num1 = 0;
+    num2 = 1;
 });
