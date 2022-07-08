@@ -6,7 +6,7 @@ calc.style.background = "pink";
 calc.style.margin = "auto";
 
 calc.innerHTML = `<div>
-        <p id="display"></p>
+        <p id="display"><></p>
         <p>
             <button id="siete">7</button>
             <button id="ocho">8</button>
@@ -99,46 +99,75 @@ nueve.addEventListener("click", function(){
     x += "9";
 });
 suma.addEventListener("click", function(){
-    accion.textContent = "suma";
-    num1 = parseInt(x);
+    accion = "suma";
+    num1 += parseInt(x);
     x = "0";
-    display.textContent = "";
+    display.textContent = "<>";
 });
 resta.addEventListener("click", function(){
-    accion.textContent = "resta";
-    num1 = parseInt(x);
+    accion = "resta";
+    num1 = parseInt(x) - num1;
     x = "0";
-    display.textContent = "";
+    display.textContent = "<>";
 });
 division.addEventListener("click", function(){
-    accion.textContent = "division";
-    num1 = parseInt(x);
+    accion = "division";
+    if(num1 != 0)
+        num1 = num1 / parseInt(x);
+    else
+        num1 = parseInt(x);
     x = "0";
-    display.textContent = "";
+    display.textContent = "<>";
 });
+
 multiplicacion.addEventListener("click", function(){
-    accion.textContent = "multiplicacion";
-    num1 = parseInt(x);
+    accion = "multiplicacion";
+    if(num1 != 0)
+        num1 = num1 * parseInt(x);
+    else
+        num1 = parseInt(x);
     x = "0";
-    display.textContent = "";
+    display.textContent = "<>";
 });
+
 cuadrado.addEventListener("click", function(){
-    accion.textContent = "cuadrado";
-    num1 = parseInt(x);
-    num2 = num1*num1;
-    display.textContent = String(num2);
-    x.textContent = String(num2);
+    accion = "cuadrado";
+    if(num1 == 0)
+        num1 = parseInt(x) * parseInt(x);
+    else
+        num1 = num1*num1;
+    x = "0";
+    display.textContent = "<>";
+});
+
+clear.addEventListener("click", function(){
+    num1 = 0;
+    num2 = 0;
+    x = "0";
+    display.textContent = "<>";
 });
 
 igual.addEventListener("click", function(){
     switch(accion){
         case "suma":
+            num2 = num1 + parseInt(x);
+            display.textContent = "<>" + String(num2);
             break;
         case "resta":
+            num2 = num1 - parseInt(x);
+            display.textContent = "<>" + String(num2);
             break;
         case "division":
+            num2 = num1 / parseInt(x);
+            display.textContent = "<>" + String(num2);
             break;
         case "multiplicacion":
+            num2 = num1 * parseInt(x);
+            display.textContent = "<>" + String(num2);
+            break;
+        case "cuadrado":
+            num2 = num1;
+            display.textContent = "<>" + String(num2);
             break;
     }
 });
